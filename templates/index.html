@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Recommendation System</title>
+    <style>
+        body{
+            background-color:whitesmoke;
+        }
+        /* Styling for book card */
+        .book-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px;
+            display: inline-block;
+            text-align: center;
+            cursor: pointer;
+            width: 150px; /* Fixed width for consistent layout */
+            height: 250px; /* Fixed height for consistent layout */
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        /* Hover effect for the book card */
+        .book-card:hover {
+            transform: scale(1.05);
+        }
+
+        /* Image styling */
+        .book-card img {
+            width: 100px;
+            height: 150px;
+            object-fit: cover; /* Ensures the image fits within the size */
+            border-radius: 4px;
+        }
+
+        /* Styling for the book title to handle long text */
+        .book-card p {
+            font-size: 14px;
+            margin-top: 10px;
+            word-wrap: break-word; /* Ensure text breaks into the next line if too long */
+            white-space: nowrap; /* Prevent the title from wrapping onto multiple lines */
+            overflow: hidden; /* Hide the overflow text */
+            text-overflow: ellipsis; /* Add "..." for overflow text */
+            max-width: 130px; /* Ensure the title fits within the book card width */
+        }
+
+        /* Styling for modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%;
+            max-width: 600px;
+        }
+
+        .close {
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Styling for the select dropdown and button */
+        .year-select-container {
+            margin-bottom: 20px;
+        }
+
+        .year-select-container select {
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-right: 10px;
+        }
+
+        .year-select-button {
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        }
+        .year-select-button:hover{
+            background-color:#65de3e;
+        }
+    </style>
+    <script>
+        function fetchBooks(year) {
+            fetch(`/books/${year}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("book-list").innerHTML = data.books.map((book, index) => `
+                        <div class="book-card" onclick="showBookDetails(${index})">
+                            <img src="${book.image}" alt="${book.title}">
+                            <p><strong>${book.title}</strong></p>
+                            <p>Author: ${book.author || "No rating"}</p>
+                        </div>
+                    `).join('');
+
+                    document.getElementById("chart").src = data.chart;
+                    window.booksData = data.books;
+                });
+        }
+
+        function showBookDetails(index) {
+            let book = window.booksData[index];
+            document.getElementById("modal-title").innerText = book.title;
+            document.getElementById("modal-author").innerText = "Author: " + book.author;
+            document.getElementById("modal-description").innerText = "Description: " + book.description;
+            document.getElementById("modal-published").innerText = "Published Date: " + book.published_date;
+            document.getElementById("modal-image").src = book.image;
+            document.getElementById("book-modal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("book-modal").style.display = "none";
+        }
+
+        function selectYear() {
+            const selectedYear = document.getElementById("year-dropdown").value;
+            fetchBooks(selectedYear);
+        }
+    </script>
+</head>
+<body>
+    <h1>Book Recommendation System</h1>
+    <h3>Select a Year:</h3>
+    <div class="year-select-container">
+        <select id="year-dropdown">
+            {% for year in years %}
+                <option value="{{ year }}">{{ year }}</option>
+            {% endfor %}
+        </select>
+        <button class="year-select-button" onclick="selectYear()">Select</button>
+    </div>
+
+    <h2>Top 5 Books</h2>
+    <div id="book-list"></div>
+
+    <h2>Book Ratings Chart</h2>
+    <img id="chart" src="" alt="Chart will appear here" width="600">
+
+    <div id="book-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title"></h2>
+            <img id="modal-image" src="" width="100">
+            <p id="modal-author"></p>
+            <p id="modal-description"></p>
+            <p id="modal-published"></p>
+            <p id="modal-rating"></p>
+        </div>
+    </div>
+</body>
+</html>
