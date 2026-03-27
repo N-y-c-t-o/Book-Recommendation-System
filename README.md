@@ -80,8 +80,9 @@ Book-Recommendation-System
     python app.py
 
 
+--- 
 
-💻 Usage
+## 💻 Usage
 
 Run the Flask application.
 
@@ -92,8 +93,9 @@ Enter a book name or select preferences.
 The system will recommend similar books.
 
 
+---
 
-📈 Future Improvements
+## 📈 Future Improvements
 
   Add user login system
   
@@ -105,9 +107,9 @@ The system will recommend similar books.
   
   Improve UI design
 
+---
 
-
-🤝 Contributing
+## 🤝 Contributing
 
   Contributions are welcome!
   
@@ -119,15 +121,15 @@ The system will recommend similar books.
   
   Submit a pull request
 
+---
 
-
-📜 License
+## 📜 License
 
   This project is open source and available under the MIT License.
 
+---
 
-
-👨‍💻 Author
+## 👨‍💻 Author
 
   Developed by N-y-c-t-o
 
