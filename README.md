@@ -60,27 +60,24 @@ Book-Recommendation-System
 
 ### 1️⃣ Clone the repository
 
-```bash
-git clone https://github.com/N-y-c-t-o/Book-Recommendation-System.git
-
-
+    git clone https://github.com/N-y-c-t-o/Book-Recommendation-System.git
 
 
 2️⃣ Navigate to the project
 
-cd Book-Recommendation-System
+    cd Book-Recommendation-System
 
 
 
 3️⃣ Install dependencies
 
-pip install -r requirements.txt
+    pip install -r requirements.txt
 
 
 
 4️⃣ Run the application
 
-python app.py
+    python app.py
 
 
 
@@ -98,58 +95,39 @@ The system will recommend similar books.
 
 📈 Future Improvements
 
-Add user login system
-
-Improve recommendation algorithm
-
-Deploy on cloud (Heroku / Render)
-
-Add more datasets
-
-Improve UI design
+  Add user login system
+  
+  Improve recommendation algorithm
+  
+  Deploy on cloud (Heroku / Render)
+  
+  Add more datasets
+  
+  Improve UI design
 
 
 
 🤝 Contributing
 
-Contributions are welcome!
-
-If you'd like to improve this project:
-
-Fork the repository
-
-Create a new branch
-
-Submit a pull request
+  Contributions are welcome!
+  
+  If you'd like to improve this project:
+  
+  Fork the repository
+  
+  Create a new branch
+  
+  Submit a pull request
 
 
 
 📜 License
 
-This project is open source and available under the MIT License.
+  This project is open source and available under the MIT License.
 
 
 
 👨‍💻 Author
 
-Developed by N-y-c-t-o
+  Developed by N-y-c-t-o
 
-
----
-
-
-
-💡 **Tip:**  
-Add screenshots later — projects with screenshots get **much more attention on GitHub**.
-
----
-
-
-
-✅ If you want, I can also help you add:
-
-- **Professional README (10x better for portfolio)**
-- **Project screenshots section**
-- **Architecture diagram**
-- **LinkedIn-ready GitHub project description**.
-::contentReference[oaicite:3]{index=3}
